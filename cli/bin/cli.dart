@@ -16,7 +16,7 @@ void main(List<String> arguments) {
 }
 
 void searchWikipedia(List<String>? arguments) { // Add this new function and add ? to arguments type
- final String articleTitle;
+  final String articleTitle;
 
   // If the user didn't pass in arguments, request an article title.
   if (arguments == null || arguments.isEmpty) {
@@ -24,11 +24,13 @@ void searchWikipedia(List<String>? arguments) { // Add this new function and add
     // Await input and provide a default empty string if the input is null.
     articleTitle = stdin.readLineSync() ?? '';
   } else {
-    // Otherwise, join the arguments into a single string.
+    // Otherwise, join the arguments into the CLI into a single string
     articleTitle = arguments.join(' ');
   }
 
-  print('Current article title: $articleTitle');
+  print('Looking up articles about "$articleTitle". Please wait.');
+  print('Here ya go!');
+  print('(Pretend this is an article about "$articleTitle")');
 }
 
 void printUsage() { // Add this new function
