@@ -38,12 +38,18 @@ void searchWikipedia(List<String>? arguments) { // Add this new function and add
 }
 
 Future<String> getWikipediaArticle(String articleTitle) async {
-  final url = Uri.https(
-    'en.wikipedia.org', 
+   final url = Uri.https(
+    'en.wikipedia.org',
     '/api/rest_v1/page/summary/$articleTitle',
-    );
-      print(url); // временно
-      return '';
+  );
+  final response = await http.get(url); // Make the HTTP request
+
+  if (response.statusCode == 200) {
+    return response.body; // Return the response body if successful
+  }
+
+  // Return an error message if the request failed
+  return 'Error: Failed to fetch article "$articleTitle". Status code: ${response.statusCode}';
 }
 void printUsage() { // Add this new function
   print(
