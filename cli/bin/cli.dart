@@ -13,8 +13,11 @@ void main(List<String> arguments) {
     searchWikipedia(inputArgs);
   } else {
     printUsage();
+   
   }
+  
 }
+
 
 void searchWikipedia(List<String>? arguments) { // Add this new function and add ? to arguments type
   final String articleTitle;
@@ -34,6 +37,9 @@ void searchWikipedia(List<String>? arguments) { // Add this new function and add
   print('(Pretend this is an article about "$articleTitle")');
 }
 
+Future<String> getWikipediaArticle(String articleTitle) async {
+  return ''; // Временная заглушка
+}
 void printUsage() { // Add this new function
   print(
     "The following commands are valid: 'help', 'version', 'search <ARTICLE-TITLE>'"
