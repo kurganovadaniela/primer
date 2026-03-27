@@ -38,7 +38,12 @@ void searchWikipedia(List<String>? arguments) { // Add this new function and add
 }
 
 Future<String> getWikipediaArticle(String articleTitle) async {
-  return ''; // Временная заглушка
+  final url = Uri.https(
+    'en.wikipedia.org', 
+    '/api/rest_v1/page/summary/$articleTitle',
+    );
+      print(url); // временно
+      return '';
 }
 void printUsage() { // Add this new function
   print(
