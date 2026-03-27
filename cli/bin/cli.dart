@@ -18,17 +18,15 @@ void main(List<String> arguments) {
   
 }
 
-
-void searchWikipedia(List<String>? arguments) { // Add this new function and add ? to arguments type
-  final String articleTitle;
-
-  // If the user didn't pass in arguments, request an article title.
+void searchWikipedia(List<String>? arguments) async { 
+  final String? articleTitle;
+  
   if (arguments == null || arguments.isEmpty) {
     print('Please provide an article title.');
-    // Await input and provide a default empty string if the input is null.
-    articleTitle = stdin.readLineSync() ?? '';
+    articleTitle = stdin.readLineSync(); 
+   
   } else {
-    // Otherwise, join the arguments into the CLI into a single string
+    
     articleTitle = arguments.join(' ');
   }
 
@@ -42,16 +40,16 @@ Future<String> getWikipediaArticle(String articleTitle) async {
     'en.wikipedia.org',
     '/api/rest_v1/page/summary/$articleTitle',
   );
-  final response = await http.get(url); // Make the HTTP request
+  final response = await http.get(url); 
 
   if (response.statusCode == 200) {
-    return response.body; // Return the response body if successful
+    return response.body; 
   }
 
-  // Return an error message if the request failed
+ 
   return 'Error: Failed to fetch article "$articleTitle". Status code: ${response.statusCode}';
 }
-void printUsage() { // Add this new function
+void printUsage() { 
   print(
     "The following commands are valid: 'help', 'version', 'search <ARTICLE-TITLE>'"
   );
