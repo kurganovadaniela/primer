@@ -1,5 +1,6 @@
-import 'dart:io'; // Add this line at the top
-const version = '0.0.1'; // Add this line
+import 'dart:io'; 
+import 'package:http/http.dart' as http;
+const version = '0.0.1'; 
 
 void main(List<String> arguments) {
   if (arguments.isEmpty || arguments.first == 'help') {
