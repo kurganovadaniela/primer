@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import '../command_runner.dart';
 enum OptionType { flag, option }
@@ -69,4 +70,38 @@ abstract class Command extends Argument {
 
   UnmodifiableSetView<Option> get options =>
   UnmodifiableSetView(_options.toSet());
+
+
+  void addFlag(String name, {String? help, String? abbr, String? valueHelp}) {
+    _options.add(
+      Option(
+        name,
+        help: help,
+        abbr: abbr,
+        defaultValue: false,
+        valueHelp: valueHelp,
+        type: OptionType.flag,
+      ),
+    );
+  }
+
+  // An option is an [Option] that takes a value.
+  void addOption(
+    String name, {
+    String? help,
+    String? abbr,
+    String? defaultValue,
+    String? valueHelp,
+  }) {
+    _options.add(
+      Option(
+        name,
+        help: help,
+        abbr: abbr,
+        defaultValue: defaultValue,
+        valueHelp: valueHelp,
+        type: OptionType.option,
+      ),
+    );
+  }
 }
