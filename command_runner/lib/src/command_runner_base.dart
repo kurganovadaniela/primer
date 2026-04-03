@@ -16,19 +16,23 @@ class CommandRunner {
   FutureOr<void> Function(Object)? onError;
 
   Future<void> run(List<String> input) async {
-    try{
-    final ArgResults results = parse(input);
-    if (results.command != null) {
-      Object? output = await results.command!.run(results);
-      print(output.toString());
+   try {
+      final ArgResults results = parse(input);
+      if (results.command != null) {
+        Object? output = await results.command!.run(results);
+        if (onOutput != null) {
+          await onOutput!(output.toString());
+        } else {
+          print(output.toString());
+        }
+      }
+    } on Exception catch (exception) {
+      if (onError != null) {
+        onError!(exception);
+      } else {
+        rethrow;
+      }
     }
-  } on Exception catch (exception) {
-    if (onError != null) {
-      onError!(exception);
-    } else {
-      rethrow;
-    }
-  }
 
   }
 
