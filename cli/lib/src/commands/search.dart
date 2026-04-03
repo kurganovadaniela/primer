@@ -40,6 +40,7 @@ class SearchCommand extends Command {
     }
 
     final buffer = StringBuffer('Search results:');
+    try{
     final SearchResults results = await search(args.commandArg!);
 
 
@@ -60,5 +61,18 @@ class SearchCommand extends Command {
       buffer.writeln('${result.title} - ${result.url}');
     }
     return buffer.toString();
+    }on HttpException catch (e) {
+      logger
+        ..warning(e.message)
+        ..warning(e.uri)
+        ..info(usage);
+      return e.message;
+    } on FormatException catch (e) {
+      logger
+        ..warning(e.message)
+        ..warning(e.source)
+        ..info(usage);
+      return e.message;
+    }
   }
 }
