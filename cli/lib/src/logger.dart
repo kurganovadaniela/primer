@@ -18,5 +18,12 @@ Logger initFileLogger(String name) {
     '${dir.path}/${now.year}_${now.month}_${now.day}_$name.txt',
   );
 
+  logger.level = Level.ALL;
+  logger.onRecord.listen((record) {
+    final msg =
+        '[${record.time} - ${record.loggerName}] ${record.level.name}: ${record.message}';
+    logFile.writeAsStringSync('$msg \n', mode: FileMode.append);
+  });
+
   return logger;
 }
