@@ -1,1 +1,2 @@
 [2026-04-03 22:08:02.740699 - errors] WARNING: ТЕСТОВАЯ ЗАПИСЬ - проверка логгера 
+[2026-04-03 22:13:03.331656 - errors] WARNING: ClientException with SocketException: Failed host lookup: 'en.wikipedia.org' (OS Error: Этот хост неизвестен, errno = 11001), uri=https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=test 

@@ -66,13 +66,13 @@ class SearchCommand extends Command {
         ..warning(e.message)
         ..warning(e.uri)
         ..info(usage);
-      return e.message;
+       rethrow;
     } on FormatException catch (e) {
       logger
         ..warning(e.message)
         ..warning(e.source)
         ..info(usage);
-      return e.message;
+       rethrow;
     }
   }
 }
